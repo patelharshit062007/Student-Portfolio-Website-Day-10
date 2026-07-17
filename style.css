@@ -1,5 +1,5 @@
 /* ==========================================
-   1. GLOBAL RESETS & GENERAL STYLES
+   1. LAYOUT RESET & BASE STYLES
    ========================================== */
 * {
   margin: 0;
@@ -13,158 +13,321 @@ html {
 }
 
 body {
-  background-color: #0f0f16;
+  background-color: #0f0f16; /* Clean Dark Background Theme */
   color: #fff;
-  padding-top: 80px; /* Navbar fixed hone ke karan content hide na ho */
+  overflow-x: hidden;
 }
 
 /* ==========================================
-   2. NAVBAR STYLES (Desktop View)
+   2. FIXED NAVBAR STYLES
    ========================================== */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #161623;
-  padding: 20px 8%;
+  background: #0b0b0f; /* Pitch dark glossy header container */
+  padding: 0 8%;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 80px;
   z-index: 1000;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .logo {
   color: #fff;
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
-.logo span {
-  color: #00bcd4;
-}
-
-/* Links Container */
 .nav-links {
   display: flex;
   list-style: none;
+  height: 100%;
   align-items: center;
 }
 
 .nav-links li {
-  margin: 0 20px;
+  margin-left: 35px;
   position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .nav-links li a {
-  color: #ffffff;
+  color: #babcbf;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 500;
-  padding: 8px 0;
-  display: block;
+  padding: 10px 0;
   transition: color 0.3s ease;
 }
 
-/* --- Line (Underline) Hover Animation --- */
+/* --- Navigation Line (Underline Line Setup) --- */
 .nav-links li a::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: 20px; /* Navbar padding layout bottom adjust tracking */
   left: 0;
   width: 0%;
-  height: 2.5px;
-  background-color: #00bcd4; /* Custom line color */
+  height: 2px;
+  background-color: #00bcd4; /* Neon Line Color */
   transition: width 0.3s ease-in-out;
 }
 
 .nav-links li a:hover {
-  color: #00bcd4;
+  color: #fff;
 }
 
 .nav-links li a:hover::after {
-  width: 100%; /* Hover pe line left to right load hogi */
+  width: 100%; /* Hover hote hi niche line slide hogi */
 }
 
-/* Hamburger button desktop par hidden rahega */
+/* Hide Hamburger Menu Panel icon on desktop display panels */
 .menu-btn {
   display: none;
   cursor: pointer;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
 }
 
 .bar {
   width: 25px;
-  height: 3px;
+  height: 2.5px;
   background: #fff;
   border-radius: 2px;
-  transition: 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 /* ==========================================
-   3. MOBILE RESPONSIVE STYLES
+   3. HERO AREA STYLES (Content Layout aligned)
    ========================================== */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 8% 40px 8%;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  gap: 50px;
+}
+
+/* Left Content side configuration styling rules */
+.hero-content {
+  flex: 1;
+  max-width: 650px;
+}
+
+.greeting {
+  color: #00bcd4;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.name {
+  font-size: 56px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 5px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+  color: #babcbf;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #8f9296;
+  margin-bottom: 35px;
+}
+
+/* Buttons Area rules framework configuration */
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.btn {
+  padding: 12px 30px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #00bcd4;
+  color: #0b0b0f;
+}
+
+.btn-primary:hover {
+  background-color: #0097a7;
+  box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+}
+
+.btn-secondary {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #fff;
+}
+
+/* Skill Tags Styles underneath button containers */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.tags span {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 16px;
+  font-size: 13px;
+  color: #a5a8ac;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Right Profile Avatar image configuration styles block area setup */
+.hero-image-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-box {
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #1e1e2f, #13131f);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  border: 4px solid rgba(255,255,255,0.03);
+}
+
+.image-box img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+}
+
+/* ==========================================
+   4. MOBILE RESPONSIVE MEDIA GRID LAYOUT
+   ========================================== */
+@media screen and (max-width: 992px) {
+  .hero-container {
+    flex-direction: column-reverse; /* Small displays standard top graphic view mapping */
+    text-align: center;
+    gap: 40px;
+  }
+  
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .name {
+    font-size: 42px;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .cta-buttons {
+    justify-content: center;
+  }
+
+  .tags {
+    justify-content: center;
+  }
+
+  .image-box {
+    width: 300px;
+    height: 300px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .navbar {
-    padding: 0 5%;
+    padding: 0 6%;
   }
 
   .menu-btn {
-    display: flex; /* Mobile screen par hamburger show hoga */
+    display: flex; /* Activate mobile dropdown menu button icon views */
   }
 
-  /* Hamburger to 'X' animation state (Optional) */
+  /* Hamburger to Cross (X) icon dynamic transformation */
   .menu-btn.open .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
+    transform: translateY(8.5px) rotate(45deg);
   }
   .menu-btn.open .bar:nth-child(2) {
     opacity: 0;
   }
   .menu-btn.open .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-8.5px) rotate(-45deg);
   }
 
-  /* Mobile Layout Settings */
+  /* Mobile overlay content navbar container list setup rules */
   .nav-links {
     position: absolute;
-    top: 80px; /* Exact navbar height ke niche */
+    top: 80px;
     left: 0;
     width: 100%;
-    background: #161623;
+    height: calc(100vh - 80px); /* Custom view heights matching remaining canvas space */
+    background: #0b0b0f;
     flex-direction: column;
     align-items: center;
-    padding: 30px 0;
-    gap: 25px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    padding-top: 50px;
+    gap: 30px;
     
-    /* Default Hidden Animation States */
+    /* Animation entry transitions tracking handlers states properties */
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease-in-out;
+    transform: translateY(-15px);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
   .nav-links li {
-    margin: 0;
-    width: 100%;
-    text-align: center;
+    margin-left: 0;
+    height: auto;
   }
 
   .nav-links li a {
-    font-size: 20px;
-    padding: 10px 0;
+    font-size: 22px;
   }
 
-  /* Mobile UI me desktop underline animation ko turn off kiya hai clear view ke liye */
+  /* Turn off the text underlines inside slide options in responsive viewport sets */
   .nav-links li a::after {
-    display: none; 
+    display: none;
   }
 
-  /* 4. JavaScript Active Trigger Class */
+  /* Active trigger class logic handled inside injected script files templates components */
   .nav-links.active {
     display: flex;
     opacity: 1;
