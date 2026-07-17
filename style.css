@@ -1,5 +1,5 @@
 /* ==========================================
-   1. CSS RESET & BASE STYLES
+   1. GLOBAL RESETS & GENERAL STYLES
    ========================================== */
 * {
   margin: 0;
@@ -12,6 +12,15 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  background-color: #0f0f16;
+  color: #fff;
+  padding-top: 80px; /* Navbar fixed hone ke karan content hide na ho */
+}
+
+/* ==========================================
+   2. NAVBAR STYLES (Desktop View)
+   ========================================== */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -22,6 +31,7 @@ html {
   top: 0;
   left: 0;
   width: 100%;
+  height: 80px;
   z-index: 1000;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
@@ -30,11 +40,18 @@ html {
   color: #fff;
   font-size: 24px;
   font-weight: 700;
+  letter-spacing: 1px;
 }
 
+.logo span {
+  color: #00bcd4;
+}
+
+/* Links Container */
 .nav-links {
   display: flex;
   list-style: none;
+  align-items: center;
 }
 
 .nav-links li {
@@ -52,7 +69,7 @@ html {
   transition: color 0.3s ease;
 }
 
-/* --- Line Hover Animation (Desktop) --- */
+/* --- Line (Underline) Hover Animation --- */
 .nav-links li a::after {
   content: '';
   position: absolute;
@@ -60,7 +77,7 @@ html {
   left: 0;
   width: 0%;
   height: 2.5px;
-  background-color: #00bcd4;
+  background-color: #00bcd4; /* Custom line color */
   transition: width 0.3s ease-in-out;
 }
 
@@ -69,9 +86,10 @@ html {
 }
 
 .nav-links li a:hover::after {
-  width: 100%;
+  width: 100%; /* Hover pe line left to right load hogi */
 }
 
+/* Hamburger button desktop par hidden rahega */
 .menu-btn {
   display: none;
   cursor: pointer;
@@ -79,60 +97,78 @@ html {
   gap: 5px;
 }
 
+.bar {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.3s ease;
+}
+
 /* ==========================================
-   MOBILE STYLES (Under 768px)
+   3. MOBILE RESPONSIVE STYLES
    ========================================== */
 @media screen and (max-width: 768px) {
+  .navbar {
+    padding: 0 5%;
+  }
+
   .menu-btn {
-    display: flex; /* Mobile par icon show hoga */
+    display: flex; /* Mobile screen par hamburger show hoga */
   }
 
-  .bar {
-    width: 25px;
-    height: 3px;
-    background: #fff;
-    transition: 0.3s ease;
+  /* Hamburger to 'X' animation state (Optional) */
+  .menu-btn.open .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .menu-btn.open .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-btn.open .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
   }
 
-  /* Dropdown mobile styling */
+  /* Mobile Layout Settings */
   .nav-links {
     position: absolute;
-    top: 100%;
+    top: 80px; /* Exact navbar height ke niche */
     left: 0;
     width: 100%;
     background: #161623;
     flex-direction: column;
     align-items: center;
-    padding: 20px 0;
-    gap: 20px;
+    padding: 30px 0;
+    gap: 25px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     
-    /* Default hidden state */
-    display: none; 
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    /* Default Hidden Animation States */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-in-out;
   }
 
   .nav-links li {
-    margin: 10px 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
   }
 
   .nav-links li a {
     font-size: 20px;
+    padding: 10px 0;
   }
 
-  /* Jab JS se 'active' class milegi tab display hoga */
+  /* Mobile UI me desktop underline animation ko turn off kiya hai clear view ke liye */
+  .nav-links li a::after {
+    display: none; 
+  }
+
+  /* 4. JavaScript Active Trigger Class */
   .nav-links.active {
     display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
-}
-
-/* ==========================================
-   4. DUMMY SECTION PADDING (Smooth scroll check ke liye)
-   ========================================== */
-section {
-  padding: 100px 8%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
 }
