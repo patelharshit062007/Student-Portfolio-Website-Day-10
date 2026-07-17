@@ -92,97 +92,72 @@ header{
     font-weight:700;
 }
 
-/* Hide checkbox */
-#menu{
-    display:none;
+/* Default Style resets for details/summary */
+details.nav-container summary {
+  list-style: none; /* Default arrow hide karne ke liye */
+}
+details.nav-container summary::-webkit-details-marker {
+  display: none; /* Safari ke liye arrow hide */
 }
 
-/* Hide menu icon on desktop */
-.menu-icon{
-    display:none;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #333;
+  color: white;
+  position: relative;
 }
 
-/* Desktop Menu */
-nav{
-    display:flex;
-    gap:25px;
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
 }
 
-/* Mobile */
-@media (max-width:768px){
-
-    .menu-icon{
-    display:block;
-    font-size:24px;   /* Pehle 30px tha */
-    color:#fff;
-    cursor:pointer;
-    padding:5px;
+.nav-links a {
+  color: white;
+  text-decoration: none;
 }
 
-    #menu:checked ~ nav{
-        display:flex;
-    }
+/* --- Mobile Responsive Rules --- */
+@media screen and (max-width: 768px) {
+  .nav-links {
+    display: none; /* Shuru me mobile links hidden rahenge */
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    background-color: #444;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    gap: 15px;
+    text-align: center;
+  }
+
+  /* Jab details open ho (hamburger click hone par) */
+  details[open] .nav-links {
+    display: flex;
+  }
+
+  /* Hamburger lines styling */
+  .menu-toggle {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    display: block;
+  }
 }
 
-nav a{
-    position:relative;
-    text-decoration:none;
-    color:#fff;
-    padding:8px 0;
-    transition:0.3s;
-}
-
-nav a::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-5px;
-    width:0%;
-    height:2px;
-    background:#00D4FF;
-    transition:0.3s ease;
-}
-
-nav a:hover::after,
-nav a.active::after{
-    width:100%;
-}
-
-nav a:hover{
-    color:#00D4FF;
-}
-
-nav a:hover::after{
-
-width:100%;
-
-}
-
-.nav-btn{
-
-text-decoration:none;
-
-padding:13px 28px;
-
-border-radius:50px;
-
-background:linear-gradient(135deg,#6C63FF,#00D4FF);
-
-color:white;
-
-font-weight:600;
-
-transition:.3s;
-
-}
-
-.nav-btn:hover{
-
-transform:translateY(-5px);
-
-box-shadow:0 15px 35px rgba(0,212,255,.35);
-
-}
 
 /* ===========================
    HERO
