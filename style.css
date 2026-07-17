@@ -5,28 +5,20 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif; /* Aap apna pasandida font use kar sakte hain */
+  font-family: 'Poppins', sans-serif;
 }
 
 html {
-  scroll-behavior: smooth; /* Links par click karne par smooth scroll hoga */
+  scroll-behavior: smooth;
 }
 
-body {
-  background-color: #0f0f16; /* Dark themes ke liye elegant background */
-  color: #fff;
-}
-
-/* ==========================================
-   2. NAVBAR CORE STYLES (Desktop View)
-   ========================================== */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #161623; /* Dark Premium Background */
+  background: #161623;
   padding: 20px 8%;
-  position: fixed; /* Top par fix rahega scroll karne par bhi */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -38,14 +30,8 @@ body {
   color: #fff;
   font-size: 24px;
   font-weight: 700;
-  letter-spacing: 1px;
 }
 
-.logo span {
-  color: #00bcd4; /* Logo ka highlight color */
-}
-
-/* Navigation Links Container */
 .nav-links {
   display: flex;
   list-style: none;
@@ -53,7 +39,7 @@ body {
 
 .nav-links li {
   margin: 0 20px;
-  position: relative; /* Line setup ke liye base */
+  position: relative;
 }
 
 .nav-links li a {
@@ -62,11 +48,11 @@ body {
   font-size: 17px;
   font-weight: 500;
   padding: 8px 0;
-  transition: color 0.3s ease;
   display: block;
+  transition: color 0.3s ease;
 }
 
-/* --- Line (Underline) Hover Animation --- */
+/* --- Line Hover Animation (Desktop) --- */
 .nav-links li a::after {
   content: '';
   position: absolute;
@@ -74,7 +60,7 @@ body {
   left: 0;
   width: 0%;
   height: 2.5px;
-  background-color: #00bcd4; /* Neon Line Color */
+  background-color: #00bcd4;
   transition: width 0.3s ease-in-out;
 }
 
@@ -83,96 +69,59 @@ body {
 }
 
 .nav-links li a:hover::after {
-  width: 100%; /* Hover karne par line poori open ho jayegi */
-}
-
-/* Hide Checkbox & Hamburger Button by Default on Desktop */
-#click {
-  display: none;
+  width: 100%;
 }
 
 .menu-btn {
   display: none;
   cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
 }
 
 /* ==========================================
-   3. MOBILE RESPONSIVE & AUTO-CLOSE TRICK
+   MOBILE STYLES (Under 768px)
    ========================================== */
 @media screen and (max-width: 768px) {
-  .navbar {
-    padding: 15px 5%;
+  .menu-btn {
+    display: flex; /* Mobile par icon show hoga */
   }
 
-  /* Hamburger Bars Styling */
-  .menu-btn {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-  
   .bar {
-    width: 27px;
+    width: 25px;
     height: 3px;
     background: #fff;
-    border-radius: 3px;
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
   }
 
-  /* Mobile Dropdown Menu Styling */
+  /* Dropdown mobile styling */
   .nav-links {
     position: absolute;
-    top: 100%; /* Navbar ke thik niche se shuru hoga */
+    top: 100%;
     left: 0;
     width: 100%;
-    height: 100vh; /* Poori screen cover karega */
     background: #161623;
-    display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 60px;
-    gap: 30px;
+    padding: 20px 0;
+    gap: 20px;
     
-    /* Pure CSS Open/Close Mechanism */
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-20px);
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    pointer-events: none; /* Menu jab hidden hai toh click block rahega */
+    /* Default hidden state */
+    display: none; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  }
+
+  .nav-links li {
+    margin: 10px 0;
   }
 
   .nav-links li a {
-    font-size: 22px; /* Mobile me thode bade text */
+    font-size: 20px;
   }
 
-  /* 1. Hamburger button par click karte hi menu open hoga */
-  #click:checked ~ .nav-links {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto; /* Buttons active ho jayenge */
-  }
-
-  /* Hamburger icon ka animation jab menu open ho (Optional Cross 'X' Effect) */
-  #click:checked ~ .menu-btn .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  #click:checked ~ .menu-btn .bar:nth-child(2) {
-    opacity: 0;
-  }
-  #click:checked ~ .menu-btn .bar:nth-shadow: none;
-  #click:checked ~ .menu-btn .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-
-  /* 2. PURE CSS AUTO-CLOSE TRICK: 
-     Jaise hi user kisi menu option par click karega, pointer-events instant refresh hote hi 
-     CSS click-state dropdown ko wapas chhipa degi */
-  .nav-links:active {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-20px);
-    transition: all 0.1s ease; /* Click hote hi turant gayab ho jayega */
+  /* Jab JS se 'active' class milegi tab display hoga */
+  .nav-links.active {
+    display: flex;
   }
 }
 
